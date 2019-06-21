@@ -1,28 +1,33 @@
 package com.zipcodewilmington.singlylinkedlist;
 
-public class Node{
-
-    Node next;
-    Object data;
 
 
-    //Constructor to add next
-    public Node(Object value){
-        next = null;
-        data = value;
 
-    }
+public class Node<E>{
 
-    //Constructor to add to specific point
-    public Node(Object value, Node nextValue){
+    Node  next;
+    E data;
+    Node prev;
+
+
+
+    //Constructor to add
+    public Node(E value, Node nextValue, Node prevValue){
         next = nextValue;
         data = value;
+        prev = prevValue;
 
     }
 
+    public Node getPrev() {
+        return prev;
+    }
 
+    public void setPrev(Node prev) {
+        this.prev = prev;
+    }
 
-    public Object getData(){
+    public E getData(){
         return data;
     }
 
@@ -31,7 +36,7 @@ public class Node{
     }
 
 
-    public void setData(Object value){
+    public void setData(E value){
         data = value;
     }
 

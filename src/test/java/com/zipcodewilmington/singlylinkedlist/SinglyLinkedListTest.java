@@ -46,6 +46,76 @@ public class SinglyLinkedListTest {
 
     }
 
+
+    @Test
+    public void remove2() {
+        SinglyLinkedList myTest = new SinglyLinkedList();
+        String testString = "";
+        Integer testInteger = 1;
+        Double testDouble = 0.0;
+
+        myTest.add(testInteger);
+        myTest.add(testString);
+        myTest.add(testDouble);
+
+        assertEquals(3, myTest.size());
+
+        assertTrue(myTest.remove(0));
+
+        assertEquals(2, myTest.size());
+
+
+    }
+
+    @Test
+    public void remove3(){
+        SinglyLinkedList myTest = new SinglyLinkedList();
+        String testString = "";
+        Integer testInteger = 1;
+        Double testDouble = 0.0;
+
+        myTest.add(testInteger);
+        myTest.add(testString);
+        myTest.add(testDouble);
+        myTest.add(testInteger);
+
+
+        assertEquals(4, myTest.size());
+
+        assertTrue(myTest.remove(1));
+
+        assertEquals(testInteger, myTest.get(2));
+
+        assertEquals(3, myTest.size());
+
+    }
+
+    @Test
+    public void remove4(){
+        SinglyLinkedList myTest = new SinglyLinkedList();
+        String testString = "";
+        Integer testInteger = 1;
+        Double testDouble = 0.0;
+
+        myTest.add(testInteger);
+        myTest.add(testString);
+        myTest.add(testDouble);
+        myTest.add(testInteger);
+
+
+        assertEquals(4, myTest.size());
+
+        assertTrue(myTest.remove(3));
+
+        assertEquals(testDouble, myTest.get(2));
+
+        assertEquals(3, myTest.size());
+    }
+
+
+
+
+
     @Test
     public void find() {
         SinglyLinkedList myTest = new SinglyLinkedList();
@@ -65,6 +135,17 @@ public class SinglyLinkedListTest {
 
     @Test
     public void size() {
+        SinglyLinkedList myTest = new SinglyLinkedList();
+        String testString = "";
+        Integer testInteger = 1;
+        Double testDouble = 0.0;
+
+        myTest.add(testInteger);
+        myTest.add(testString);
+        myTest.add(testDouble);
+
+        assertEquals(3, myTest.size());
+
 
 
 
@@ -77,9 +158,12 @@ public class SinglyLinkedListTest {
         Integer testInt2 = 2;
 
         myTest.add(testInteger);
+        myTest.add(testInt2);
 
 
         assertEquals(testInteger, myTest.get(0));
+
+        assertEquals(testInt2, myTest.get(1));
 
 
     }
@@ -100,8 +184,8 @@ public class SinglyLinkedListTest {
         assertEquals(2, myTest2.size());
 
 
-
-
-
     }
+
+
+
 }

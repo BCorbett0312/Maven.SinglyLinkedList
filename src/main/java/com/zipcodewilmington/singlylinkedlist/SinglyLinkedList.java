@@ -1,38 +1,38 @@
 package com.zipcodewilmington.singlylinkedlist;
 
 
-import java.util.LinkedList;
+import java.text.Collator;
 
 /**
  * Created by leon on 1/10/18.
  */
-class SinglyLinkedList {
-    private Node begin;
-
+class SinglyLinkedList<E> {
+    private Node <E> begin;
+    private Node <E> end;
 
     //Constructor
     public SinglyLinkedList(){
-
+        begin = null;
+        end = null;
     }
 
-
-    public void add(Object data) {
+    public void add(E data) {
 
         if (begin == null) {
-            begin = new Node(data);
-
+            begin = new Node(data, null, null);
+            end = begin;
         }
-
         else {
-            Node temp = new Node(data);
-            Node current = begin;
+            Node temp = new Node(data, null, end);
+            end.setNext(temp);
+            end = temp;
 
-            if (current != null) {
-                while (current.getNext() != null) {
-                    current = current.getNext();
-                }
-                current.setNext(temp);
-            }
+//            if (current != null) {
+//                while (current.getNext() != null) {
+//                    current = current.getNext();
+//                }
+//                current.setNext(temp);
+//            }
 
         }
     }
@@ -41,23 +41,24 @@ class SinglyLinkedList {
 
 
     public Boolean remove(int index){
-        if(index <0 || index>size()){
+        if(index < 0 || index > this.size()){
             return false;
         }
-
-        Node current = begin;
-        if(begin!=null){
-            for (int i = 0; i < index; i++) {
-                if(current.getNext() == null){
-                    return false;
-                }
-                current = current.getNext();
-            }
-
-            current.setNext(current.getNext().getNext());
-
+        if(this.getNodeOfIndex(index) == begin){
+            Node temp = begin.getNext();
+            begin.setNext(null);
+            begin = temp;
             return true;
         }
+        Node current = begin;
+        if(begin!=null){
+            for (int i = 0; i < index-1; i++) {
+                current = current.getNext();
+            }
+            if(current.getNext().getNext() != null);
+                current.setNext(current.getNext().getNext());
+                return true;
+            }
 
         return false;
     }
@@ -65,13 +66,12 @@ class SinglyLinkedList {
 
 
 
-    public int find(Object data){
+    public int find(E data){
         int index = 0;
         if (data == null) {
             for(Node x = begin; x!= null; x = x.next){
                 if(x.getData() == null){
                     return index;
-
                 }
                 index++;
             }
@@ -91,8 +91,6 @@ class SinglyLinkedList {
 
 
 
-
-
     public int size(){
         Node current = begin;
         int counter = 0;
@@ -106,11 +104,9 @@ class SinglyLinkedList {
     }
 
 
+    public E get(int index){
 
-
-    public Object get(int index){
-
-        return getNodeOfIndex(index).getData();
+        return (E) getNodeOfIndex(index).getData();
     }
 
 
@@ -129,11 +125,11 @@ class SinglyLinkedList {
 
 
 
-    public SinglyLinkedList copy(){
-        SinglyLinkedList result = new SinglyLinkedList();
+    public SinglyLinkedList<E> copy(){
+        SinglyLinkedList<E> result = new SinglyLinkedList<>();
         Node current = begin;
         while(current != null) {
-            result.add(current);
+            result.add((E) current.getData());
             current = current.getNext();
 
         }
@@ -141,9 +137,12 @@ class SinglyLinkedList {
         return result;
     }
 
-    public void sort(){
-
+    public void sort() {
     }
+
+
+
+
 
 
 }
